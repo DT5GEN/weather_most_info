@@ -23,6 +23,8 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.dt5gen.weathermostinfo.ui.theme.WeatherMostInfoTheme
+import org.json.JSONObject
+
 const val API_KEY = "9c4dca2eee744d2f9ba134332220209"
 
 class MainActivity : ComponentActivity() {
@@ -86,7 +88,8 @@ val url = "https://api.weatherapi.com/v1/current.json" + "?key=$API_KEY&" + "q=$
         Request.Method.GET,
         url, {
             response ->
-            state.value = response
+            val obj = JSONObject(response)
+            state.value = obj.getJSONObject("current").getString("temp_c")
         }, {
             error ->
         }
