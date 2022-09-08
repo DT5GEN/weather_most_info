@@ -1,5 +1,6 @@
 package com.dt5gen.weathermostinfo
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dt5gen.weathermostinfo.ui.theme.WeatherMostInfoTheme
+const val API_KEY = "9c4dca2eee744d2f9ba134332220209"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting("Tokyo", this)
                 }
             }
         }
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(city: String) {
+fun Greeting(city: String, context: Context) {
     Column(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxHeight(0.5f)
             .fillMaxWidth()
@@ -50,7 +52,7 @@ fun Greeting(city: String) {
             contentAlignment = Alignment.BottomCenter) {
             Button(onClick = { },
             modifier = Modifier.padding(8.dp).fillMaxWidth()) {
-                Text(text = "Refresh")
+                Text(text = "update")
             }
 
 
@@ -63,8 +65,8 @@ fun Greeting(city: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DefaultPreview(context: Context) {
     WeatherMostInfoTheme {
-        Greeting("VasSSya")
+        Greeting("VasSSya", context)
     }
 }
